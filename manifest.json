@@ -8,11 +8,12 @@
         "default_icon": "icon.png",
         "default_popup": "popup.html"
     },
-    "permission": [
+    "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js; object-src 'self'",
+    "permissions": [
         "activeTab", 
         "cookies", 
-        "*://*.google.com", 
-        "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js", 
         "https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js", 
-        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"]
+        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
+        "<all_urls>"]
+
 }

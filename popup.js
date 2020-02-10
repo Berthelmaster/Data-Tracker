@@ -1,5 +1,5 @@
 //Cookies.set('gg', 'ggg');
-//Cookies.set('tests', 'testtest');
+Cookies.set('tests', 'testtest');
 window.onload = function getall() {
 
     var cookies = Cookies.get();
