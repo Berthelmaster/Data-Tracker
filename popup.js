@@ -1,6 +1,6 @@
-Cookies.set('gg', 'ggg');
-Cookies.set('tests', 'testtest');
-function getall() {
+//Cookies.set('gg', 'ggg');
+//Cookies.set('tests', 'testtest');
+window.onload = function getall() {
 
     var cookies = Cookies.get();
     var array = new Array();
@@ -17,9 +17,18 @@ function getall() {
 
     console.log(array);
 
-    for(var html in array)
+    if(Array.isArray(array) && array.length)
     {
-        var output = array[html]
-        $('#output').append(`<p>${output}</p>`);
+        for(var html in array)
+        {
+            var output = array[html]
+            $('#output').append(`<p class="trackers">This organisation is tracking you: ${output}</p>`);
+        }
     }
+    else
+    {
+        $('#output').append(`<p class="trackers">No organisation is tracking you!</p>`);
+    }
+
+    
 }
