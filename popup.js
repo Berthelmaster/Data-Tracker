@@ -1,4 +1,4 @@
-//Cookies.set('gg', 'ggg');
+Cookies.set('gg', 'ggg');
 Cookies.set('tests', 'testtest');
 window.onload = function getall() {
 
@@ -32,3 +32,4 @@ window.onload = function getall() {
 
     
 }
+

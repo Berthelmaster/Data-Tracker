@@ -11,9 +11,9 @@
     "content_security_policy": "script-src 'self' https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js; object-src 'self'",
     "permissions": [
         "activeTab", 
-        "cookies", 
-        "https://cdn.jsdelivr.net/npm/js-cookie@beta/dist/js.cookie.min.js", 
-        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css",
-        "<all_urls>"]
+        "cookies",
+        "tabs", 
+        "http://*/*", 
+        "https://*/*"]
 
 }
