@@ -1,35 +1,48 @@
-Cookies.set('gg', 'ggg');
-Cookies.set('tests', 'testtest');
-window.onload = function getall() {
-
-    var cookies = Cookies.get();
-    var array = new Array();
-
-    for(var prop in cookies)
-    {
-        if(prop == '_fbp'){array.push('Facebook'); continue;} //facebook
-        if(prop == '_gid'){array.push('Google'); continue;} //Google
-        if(prop == 'gg'){array.push('Test'); continue;} //Test
-        if(prop == 'tests'){array.push('Wat'); continue;} //TestV2
-        console.log(prop)
-    }
-
-
-    console.log(array);
-
-    if(Array.isArray(array) && array.length)
-    {
-        for(var html in array)
-        {
-            var output = array[html]
-            $('#output').append(`<p class="trackers">This organisation is tracking you: ${output}</p>`);
-        }
-    }
-    else
-    {
-        $('#output').append(`<p class="trackers">No organisation is tracking you!</p>`);
-    }
-
-    
+function begin() {
+  getUrl()
 }
 
+function getUrl() {
+    
+    chrome.tabs.query({ active: true, currentWindow: true }, function onload(tabs) {
+      var tab = tabs[0];
+      var url = new URL(tab.url)
+      var hostDomain = url.hostname.toString();
+      var host = String(hostDomain).replace(/^www\./,'')
+
+      $('#website').append(`<p class="trackers">${host}</p>`);
+
+      loadCookies(host);
+    })
+  }
+
+  function loadCookies(host) {
+    var counter = 0;
+    chrome.cookies.getAll({domain: host},function(cookies) {
+    
+      for (var i in cookies) {
+
+        if(cookies[i].name == '_fbp'){++counter; callOut("Facebook"); continue;} //facebook
+        if(cookies[i].name == '_gid'){++counter; callOut("Google"); continue;} //Google
+        
+      }
+
+      if(counter === 0)
+        noTrackers()
+      
+    });
+  }
+
+  function callOut(tag){
+    $('#output').append(`<p class="trackers">Third-party data sharing to: ${tag}</p>`);
+  }
+
+  function noTrackers()
+  {
+    $('#output').append(`<p class="trackers">No direct Third-party data sharing on this website</p>`);
+  }
+
+
+  document.addEventListener('DOMContentLoaded', function() {
+    begin()
+  });
